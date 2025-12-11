@@ -1,0 +1,5 @@
+{
+  "name": "Przelicznik Muliny",
+  "description": "Aplikacja do konwersji kodów muliny (DMC, Anchor, Ariadna) oraz wyszukiwania kolorów za pomocą AI.",
+  "requestFramePermissions": []
+}
