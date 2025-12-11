@@ -3,13 +3,17 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // Ładujemy zmienne środowiskowe (w tym API_KEY z Netlify)
   const env = loadEnv(mode, process.cwd(), '');
   return {
     plugins: [react()],
     define: {
-      // Przekazujemy klucz API do aplikacji w bezpieczny sposób
+      // Bezpieczne przekazanie klucza API
       'process.env.API_KEY': JSON.stringify(env.API_KEY),
+      // Zapobieganie błędom w bibliotekach, które mogą odwoływać się do process.env
+      'process.env': {
+        NODE_ENV: JSON.stringify(mode),
+        API_KEY: JSON.stringify(env.API_KEY)
+      }
     },
   }
 })
